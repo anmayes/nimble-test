@@ -1,0 +1,24 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: no
+
+  vars:
+    nimble_rest_url: "https://nimble-af9000.wwtpoc.local:5392/v1"
+
+  tasks:
+    - name: Get token
+      uri:
+        url: "{{nimble_rest_url}}/tokens"
+        validate_certs: no
+        method: POST
+        status_code: 201
+        body_format: json
+        body:
+          data:
+            username: "admin"
+            password: "WWTwwt1!"
+        return_content: yes
+      register: tokens
+
+    - debug: var=tokens
