@@ -22,3 +22,4 @@
       register: tokens
 
     - debug: var=tokens
+    - debug: var=tokens.json.data.session_token
